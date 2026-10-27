@@ -17,6 +17,8 @@ The first Foundry test run failed because the package lacked one example file. W
 
 These checks ran on one Windows host. We have not run them on a separate Mac or Linux host. See [RELEASE_CHECKS.json](RELEASE_CHECKS.json) for the saved package check counts.
 
+A fresh clone from the public repo found one more install issue: Git changed line endings on Windows, which broke file hashes. The repo now includes `.gitattributes` to keep file bytes unchanged when you clone it.
+
 ## Tests with fresh agents
 
 A fresh agent starts without the earlier chat. These trials used one agent to build a workflow and another to follow it. We checked the files and results after the agents finished.

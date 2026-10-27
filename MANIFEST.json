@@ -2,6 +2,10 @@
   "version": "0.1.0-rc.2",
   "files": [
     {
+      "path": ".gitattributes",
+      "sha256": "26eaf1b1079f6722f85541157eabe977f4c155f75baeea100530df2c0fc4dfce"
+    },
+    {
       "path": ".gitignore",
       "sha256": "25199f987ea4201a933dadad89f21368a4475a09a08a334d71651924ed818f8f"
     },
@@ -115,7 +119,7 @@
     },
     {
       "path": "TESTING.md",
-      "sha256": "a35276c6a4945e21faa8e851aaae23c0455266844794367cddc4e34db7158250"
+      "sha256": "74554b8b5f65ef7a475655b7a2b6a3024e55da4d04c14ddc1c3a92e67bb25c6e"
     },
     {
       "path": "tests/test_install.py",
