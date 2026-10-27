@@ -1,0 +1,20 @@
+{
+  "schema_version": "workflow_brief_v1",
+  "workflow_id": "durable_cli_feature",
+  "definition_version": "1.0.0",
+  "objective": "Implement, independently validate, review, and publish a durable CLI feature.",
+  "requirements": [
+    "Research live repository contracts before design.",
+    "Preserve existing behavior and add focused regression tests.",
+    "Require an independent validation session before human approval.",
+    "Publish no more than once under a stable logical action key."
+  ],
+  "research_required": true,
+  "human_review": true,
+  "max_recovery_cycles": 3,
+  "default_lease_seconds": 1800,
+  "final_effect": {
+    "idempotency_key": "publish-durable-cli-feature",
+    "receipt_type": "publication_receipt_v1"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "workflow_foundry_v0",
+  "workflow_id": "artifact_correction",
+  "definition_version": "0.2.0",
+  "objective": "Produce an independently validated artifact, obtain explicit human approval, and publish it once.",
+  "contracts": {
+    "artifact_manifest_v1": {
+      "required_fields": ["artifact_uri", "artifact_sha256"],
+      "evidence_kinds": ["implementation"],
+      "field_types": {"artifact_uri": "string", "artifact_sha256": "string"}
+    },
+    "validation_report_v1": {
+      "required_fields": ["candidate_sha256", "checks_passed"],
+      "evidence_kinds": ["validation"],
+      "field_types": {"candidate_sha256": "string", "checks_passed": "array"}
+    }
+  },
+  "entry": "produce",
+  "terminal_nodes": ["accepted", "stopped"],
+  "policies": {"max_steps": 20, "default_lease_seconds": 900, "max_claim_attempts": 5, "event_context_limit": 25, "worker_protocol_required": true},
+  "nodes": [
+    {
+      "id": "produce",
+      "kind": "agent",
+      "output_contract": "artifact_manifest_v1",
+      "instructions": "Create or correct the requested artifact, record the material edit and validation actions, and return a content-addressed manifest.",
+      "executor": {
+        "required_capabilities": ["coding"],
+        "allowed_actions": ["read", "edit", "test"],
+        "forbidden_actions": ["push", "comment", "merge"],
+        "required_actions": ["edit", "test"],
+        "risk_tags": ["artifact", "implementation", "stale_identity"]
+      },
+      "max_visits": 3,
+      "routes": {"success": "validate", "error": "stopped"}
+    },
+    {
+      "id": "validate",
+      "kind": "validation",
+      "output_contract": "validation_report_v1",
+      "instructions": "Independently validate the exact artifact digest and report observed checks without editing it.",
+      "executor": {
+        "required_capabilities": ["validation"],
+        "allowed_actions": ["read", "test"],
+        "forbidden_actions": ["edit", "push", "comment", "merge"],
+        "required_actions": ["test"],
+        "independent_from": ["produce"],
+        "risk_tags": ["validation", "evidence_scope", "independent_review"]
+      },
+      "max_visits": 3,
+      "routes": {"pass": "review", "fail": "produce", "error": "stopped"}
+    },
+    {
+      "id": "review",
+      "kind": "human_wait",
+      "wait": {
+        "event_type": "artifact.reviewed",
+        "correlation_key": "artifact-review",
+        "requires_actor": true,
+        "required_evidence": ["review_record"]
+      },
+      "routes": {"approved": "publish", "rejected": "produce", "error": "stopped"},
+      "max_visits": 3
+    },
+    {
+      "id": "publish",
+      "kind": "effect",
+      "effect": {"idempotency_key": "publish-artifact", "receipt_type": "publication_receipt_v1"},
+      "routes": {"success": "accepted", "conflict": "stopped", "error": "stopped"}
+    },
+    {"id": "accepted", "kind": "terminal", "outcome": "accepted"},
+    {"id": "stopped", "kind": "terminal", "outcome": "stopped"}
+  ]
+}

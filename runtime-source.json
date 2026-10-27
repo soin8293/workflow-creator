@@ -1,0 +1,64 @@
+{
+  "runtime": "workflow-foundry",
+  "version": "0.2.0",
+  "license": "MIT",
+  "origin": "locally developed source snapshot",
+  "unchanged_files": [
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/__init__.py",
+      "sha256": "95903d48cfb42f959ff3be4ff511bd96ddb44702a194d1dc1df29b7af89330f4"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/cli.py",
+      "sha256": "1bd962d0e33dcc9fbe8a9f9b3704f3b22862f073f2994b359f441591ed15a5fe"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/compiler.py",
+      "sha256": "1bf440ec501b39ce6bf557959616ac1ba928d5d47a20b33be94aef2b320c4479"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/generator.py",
+      "sha256": "5787494549854e3719bce8324e6d16046730eb46eec2573c2c0f254ba929b9cf"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/protocol.py",
+      "sha256": "a05ea5c360c38f7e8d326af24ce07d5c47b421aab3791fb1a23083a16cf7860d"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/runtime.py",
+      "sha256": "0ec1350739b5c037e50b90c5b8464a03e13f567c2fecc2edec190d6ab132e802"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_cli.py",
+      "sha256": "48c4b8c8da19f7b51c9bf169bde48c2503c342f70e682354edccb3569fa397e2"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_compiler.py",
+      "sha256": "bfec5f9c44f0a94ac722b9f5d928d648203bc13d76f77b72bea0a4b7d3165856"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_generator.py",
+      "sha256": "2b202c0d49ce5d826b29082eeb5675fa653e63328d6c0a48110cd76be35beb92"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_protocol.py",
+      "sha256": "41cda89cda50e01f6146f9d7d483357bbbcb0f9df5eea359a12ae39d203a4277"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_runtime.py",
+      "sha256": "2907cfa5fd1880897de2275546b26b1271c76f08aacfb103bff6a894b71e17fd"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/examples/artifact-correction.json",
+      "sha256": "5d7471873fc29e28350d000668d4edde2eaaf2858fa1f497094b94678cd5532d"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/examples/coding-task-brief.json",
+      "sha256": "aa4cefd7a561b297dfd32572f1da6e2d8c6d5ba0016b24e4b7877d6c4f6356b2"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/examples/research-report.json",
+      "sha256": "df1c466a99602a84fe3f9bc8ddd0dae31cd2c233e2101b4fea1c75e083b67ace"
+    }
+  ]
+}

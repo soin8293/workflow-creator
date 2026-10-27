@@ -1,0 +1,125 @@
+{
+  "version": "0.1.0-rc.2",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "25199f987ea4201a933dadad89f21368a4475a09a08a334d71651924ed818f8f"
+    },
+    {
+      "path": "DEPENDENCIES.md",
+      "sha256": "f8e94eb1ac0567d3adf39611bddf56bed496d979a8bf895eac6b1afb17350790"
+    },
+    {
+      "path": "install.py",
+      "sha256": "52327ed41939245b6e9d9c94a1492eae38470517768b797a946222febd5bbd34"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "cc7a1f20b6c2b9fc7ea1112ee820b26775004cc2fcd6425d5f1e1930f1c6e9c7"
+    },
+    {
+      "path": "README.md",
+      "sha256": "71dac77dcae798cd95888dbf515d0a7d09539f5e70f19089cbc438551b1f2553"
+    },
+    {
+      "path": "RELEASE_CHECKS.json",
+      "sha256": "2fc209180dc5814e834801b7b4b21c39f63c4a26233bf547380d47a52675e6f6"
+    },
+    {
+      "path": "runtime-source.json",
+      "sha256": "193069ac20dc003531d206e85f462a5be1c4dfc5e94cba0ed39af24319c203d2"
+    },
+    {
+      "path": "RUNTIME_PROVENANCE.md",
+      "sha256": "29a3f6422a7be5a44eaf2651c19cb2fd7beb1bdc6640fc3253813e81add4d0af"
+    },
+    {
+      "path": "skills/workflow-creator/LICENSE",
+      "sha256": "cc7a1f20b6c2b9fc7ea1112ee820b26775004cc2fcd6425d5f1e1930f1c6e9c7"
+    },
+    {
+      "path": "skills/workflow-creator/references/foundry.md",
+      "sha256": "90948ae5b44f8d9c74d39a5b11983ea8748fde72129c845b3d8afbcd05d07ac8"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/examples/artifact-correction.json",
+      "sha256": "5d7471873fc29e28350d000668d4edde2eaaf2858fa1f497094b94678cd5532d"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/examples/coding-task-brief.json",
+      "sha256": "aa4cefd7a561b297dfd32572f1da6e2d8c6d5ba0016b24e4b7877d6c4f6356b2"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/examples/research-report.json",
+      "sha256": "df1c466a99602a84fe3f9bc8ddd0dae31cd2c233e2101b4fea1c75e083b67ace"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/LICENSE",
+      "sha256": "cc7a1f20b6c2b9fc7ea1112ee820b26775004cc2fcd6425d5f1e1930f1c6e9c7"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/README.md",
+      "sha256": "edd1dc15edbadaa2884b06074b5937073efe7309f01b250982e79713b6bcfecb"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_cli.py",
+      "sha256": "48c4b8c8da19f7b51c9bf169bde48c2503c342f70e682354edccb3569fa397e2"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_compiler.py",
+      "sha256": "bfec5f9c44f0a94ac722b9f5d928d648203bc13d76f77b72bea0a4b7d3165856"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_generator.py",
+      "sha256": "2b202c0d49ce5d826b29082eeb5675fa653e63328d6c0a48110cd76be35beb92"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_protocol.py",
+      "sha256": "41cda89cda50e01f6146f9d7d483357bbbcb0f9df5eea359a12ae39d203a4277"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/tests/test_runtime.py",
+      "sha256": "2907cfa5fd1880897de2275546b26b1271c76f08aacfb103bff6a894b71e17fd"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/__init__.py",
+      "sha256": "95903d48cfb42f959ff3be4ff511bd96ddb44702a194d1dc1df29b7af89330f4"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/cli.py",
+      "sha256": "1bd962d0e33dcc9fbe8a9f9b3704f3b22862f073f2994b359f441591ed15a5fe"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/compiler.py",
+      "sha256": "1bf440ec501b39ce6bf557959616ac1ba928d5d47a20b33be94aef2b320c4479"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/generator.py",
+      "sha256": "5787494549854e3719bce8324e6d16046730eb46eec2573c2c0f254ba929b9cf"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/protocol.py",
+      "sha256": "a05ea5c360c38f7e8d326af24ce07d5c47b421aab3791fb1a23083a16cf7860d"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/workflow_foundry/runtime.py",
+      "sha256": "0ec1350739b5c037e50b90c5b8464a03e13f567c2fecc2edec190d6ab132e802"
+    },
+    {
+      "path": "skills/workflow-creator/scripts/foundry.py",
+      "sha256": "b00745168a9744205048b098796395a215179875144a70e82bcc1da4967fd9e7"
+    },
+    {
+      "path": "skills/workflow-creator/SKILL.md",
+      "sha256": "5f5d7b24d085b2d351d8aad52842804e4907afb7d82eea085b2e293a5efba0e7"
+    },
+    {
+      "path": "TESTING.md",
+      "sha256": "a35276c6a4945e21faa8e851aaae23c0455266844794367cddc4e34db7158250"
+    },
+    {
+      "path": "tests/test_install.py",
+      "sha256": "47d809df2eab20c16c487c7d4da68928f768d478c8a6bd5e215ddee73649e93b"
+    }
+  ]
+}

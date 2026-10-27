@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+cases/
+runs/
+*.zip

@@ -1,0 +1,80 @@
+{
+  "schema_version": "workflow_foundry_v0",
+  "workflow_id": "research_report",
+  "definition_version": "0.2.0",
+  "objective": "Research a question until the evidence threshold is met, synthesize a cited report, review it, and export once.",
+  "contracts": {
+    "source_inventory_v1": {
+      "required_fields": ["question", "source_count", "coverage"],
+      "evidence_kinds": ["source_inventory"],
+      "field_types": {"question": "string", "source_count": "integer", "coverage": "object"}
+    },
+    "cited_report_v1": {
+      "required_fields": ["report_uri", "report_sha256", "conclusions"],
+      "evidence_kinds": ["research_report", "citation_audit"],
+      "field_types": {"report_uri": "string", "report_sha256": "string", "conclusions": "array"}
+    }
+  },
+  "entry": "scope",
+  "terminal_nodes": ["complete", "blocked"],
+  "policies": {"max_steps": 24, "default_lease_seconds": 1200, "max_claim_attempts": 6, "event_context_limit": 30, "worker_protocol_required": true},
+  "nodes": [
+    {"id": "scope", "kind": "activity", "routes": {"success": "collect", "error": "blocked"}},
+    {
+      "id": "collect",
+      "kind": "agent",
+      "output_contract": "source_inventory_v1",
+      "instructions": "Collect primary evidence for the question and record a source inventory with explicit coverage gaps.",
+      "executor": {
+        "required_capabilities": ["research"],
+        "allowed_actions": ["read", "browse", "analyze"],
+        "forbidden_actions": ["publish", "comment"],
+        "required_actions": ["browse", "analyze"],
+        "risk_tags": ["research", "source_coverage", "stale_authority"]
+      },
+      "max_visits": 4,
+      "routes": {"success": "sufficiency", "error": "blocked"}
+    },
+    {
+      "id": "sufficiency",
+      "kind": "decision",
+      "max_visits": 4,
+      "routes": {"true": "synthesize", "false": "collect", "unknown": "blocked", "error": "blocked"}
+    },
+    {
+      "id": "synthesize",
+      "kind": "agent",
+      "output_contract": "cited_report_v1",
+      "instructions": "Synthesize the sufficient evidence into a cited report and run a citation audit before submission.",
+      "executor": {
+        "required_capabilities": ["synthesis"],
+        "allowed_actions": ["read", "write", "analyze", "test"],
+        "forbidden_actions": ["publish", "comment"],
+        "required_actions": ["write", "test"],
+        "risk_tags": ["research", "citation", "evidence_scope"]
+      },
+      "max_visits": 4,
+      "routes": {"success": "review", "error": "blocked"}
+    },
+    {
+      "id": "review",
+      "kind": "human_wait",
+      "wait": {
+        "event_type": "report.reviewed",
+        "correlation_key": "research-report",
+        "requires_actor": true,
+        "required_evidence": ["review_record"]
+      },
+      "routes": {"approved": "export", "rejected": "collect", "error": "blocked"},
+      "max_visits": 4
+    },
+    {
+      "id": "export",
+      "kind": "effect",
+      "effect": {"idempotency_key": "export-report", "receipt_type": "export_receipt_v1"},
+      "routes": {"success": "complete", "conflict": "blocked", "error": "blocked"}
+    },
+    {"id": "complete", "kind": "terminal", "outcome": "complete"},
+    {"id": "blocked", "kind": "terminal", "outcome": "blocked"}
+  ]
+}

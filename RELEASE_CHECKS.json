@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0-rc.2",
+  "date": "2026-10-24",
+  "status": "local_release_checks_passed",
+  "host": "Windows, Python 3.12",
+  "native_runtime_tests": {"run": 43, "failures": 0, "errors": 0},
+  "offline_installer_tests": {"run": 4, "failures": 0, "errors": 0},
+  "installer_cases": ["clean install without external engine", "update preserves previous installation", "corrupted payload rejected", "failed runtime check preserves current installation"],
+  "native_smoke": ["compile", "transition", "reopen", "stale revision", "replay"],
+  "runtime_snapshot": {"version": "0.2.0", "unchanged_files": 14},
+  "license": "MIT",
+  "initial_failure": "One native suite case lacked research-report.json in the first snapshot; unchanged generic fixture added and complete suite rerun successfully.",
+  "limits": ["No new blind creator/executor trial of packaging changes", "No separate macOS/Linux host test", "No public repository created or publication performed"]
+}
