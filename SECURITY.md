@@ -6,6 +6,6 @@ For a normal bug, use [issues](https://github.com/soin8293/workflow-creator/issu
 
 This is an early-release project. Fixes target the current release; there is no long-term support promise or guaranteed response time. Check the [changelog](CHANGELOG.md) for changes.
 
-The installer and included runtime work offline. The installer checks file hashes, saves an old installation before replacement, and checks the installed skill and runtime. File hashes detect changes relative to a trusted manifest; they are not a signature that proves who made the download.
+The installer and runtime work offline. Before replacing the skill, the installer checks the new files and saves the old copy. The check command verifies the installed skill and runtime. Hashes help you detect changed files, but you still need to trust the source of your download.
 
 A workflow controls actions through its own runner. It cannot block every other tool on your computer or prove that a person told the truth. Review the task's output and authorize outside actions through your own rules. Local tests do not certify the security of the whole host.

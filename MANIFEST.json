@@ -23,7 +23,7 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "5b4f9d56961d3a6ef0b66e6a821298eb86a8322f3fb189855dfcaccb1a00100b"
+      "sha256": "ecfc4b8d518d222554d223bf3326e3884e57000ce6c297b4dc40d017330253c2"
     },
     {
       "path": "DEPENDENCIES.md",
@@ -35,7 +35,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "b7717a7717da4b71f38956e12dc20bfcd5eed13de9a42b0b62964b16dfd7ced3"
+      "sha256": "0e2c36b684cc9083bdd6891f0e91f6593730027461af3735a872971a1feb4bbf"
     },
     {
       "path": "RELEASE_CHECKS.json",
@@ -47,11 +47,11 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "6a565d0ca0b6cc245be514af3b35716f8e3785837f57f8a46a46de4680d5358b"
+      "sha256": "2c0970077d6aafc608d10f1bcbc539b14a282a3ce48f233252508106fdd99b25"
     },
     {
       "path": "TESTING.md",
-      "sha256": "6db0b503687944f2dcacf24a05397ff46b41fbadd3f021dede1f99f7f6ae08ac"
+      "sha256": "fec9ba28482a2d404c2718a5f96341b163f2f773e9cb7279353b613f1d480882"
     },
     {
       "path": "examples/README.md",

@@ -17,7 +17,7 @@ python scripts/check.py
 
 The first command updates file hashes. The second checks the files, links, hashes, and all test suites. It fails if a test suite has no tests. It does not change the manifest.
 
-Add a test for a bug you fix. Check the output or saved state, not whether the docs contain your chosen words. Preserve a valid case alongside the case that should fail.
+When you fix a bug, add a test of the output or saved state. Include a valid case as well as the one that should fail.
 
 ## Prepare a package
 
@@ -29,7 +29,7 @@ Run the checks, then build outside the source folder:
 python scripts/release.py build --output ../workflow-creator-package.zip
 ```
 
-The builder checks the manifest first. It packs only the reviewed file list and verifies the ZIP bytes. Choose a new ZIP path; it will not overwrite an old file. Extract that ZIP elsewhere and run `python install.py --skills-dir /path/to/test-skills`, then the same command with `--check`. Use a temporary test folder instead of replacing your real skill while testing.
+The builder checks the manifest, packs the reviewed files, and checks that the ZIP contains the same bytes. Choose a new ZIP path; it will not overwrite an old file. Extract the ZIP elsewhere and run `python install.py --skills-dir /path/to/test-skills`, then the same command with `--check`. Use a temporary test folder so you keep your real skill intact.
 
 CI runs the checks on Windows and Ubuntu with Python 3.11 and 3.12. Review its result for your exact commit before merging. Code tests do not prove a fresh agent will make a useful workflow; label any separate agent trial and its limits.
 

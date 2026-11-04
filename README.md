@@ -2,7 +2,7 @@
 
 Give your agent a project folder full of docs. Workflow Creator helps it turn those docs into a workflow you can run.
 
-The agent reads the goal, finds the rules, and builds the steps. It adds checks, saves progress, and shows what to do next. You can ask it to create a workflow with one prompt:
+The agent reads the docs, works out the steps, and adds checks for the results. It saves progress so you can pick up the work later. To start, say:
 
 > Use workflow-creator.
 
@@ -19,7 +19,7 @@ python install.py --check
 
 On some computers, the Python command is `python3` or `py -3`. Use that name in place of `python`.
 
-The first command installs the skill and the code that runs its workflows. The second checks the skill header and installed file hashes before it runs code. It then tests saved progress, step changes, and checks that block old actions. Both commands work offline. They use the tools built into Python.
+The first command installs the skill and its runtime. The second checks that the skill files are complete and unchanged, then tests the runtime. Both commands work offline with the tools built into Python.
 
 The default install folder is `~/.codex/skills/workflow-creator`. If you set `CODEX_HOME`, the installer uses its `skills` folder instead. Open a new agent session after you install it.
 
@@ -45,7 +45,7 @@ You should get these files in your project:
 - Tests of the normal path, failed checks, repairs, and saved progress.
 - Notes on gaps that the agent could not check.
 
-The workflow should say who does each step: the agent, you, or a tool. It should also say what result lets that step pass. A file's name or the words “tests passed” may not be enough to show the task is done.
+The workflow should say who does each step and what result lets it pass. Check the work itself before marking it done; a file name or a “tests passed” message can miss a wrong result.
 
 Creating the workflow is its own task. Tell the agent when you want it to begin the main work.
 
@@ -55,7 +55,7 @@ Open the start file that the agent made. Follow its start command. The workflow 
 
 For later work, use its status or resume command. Keep the saved run so the next agent can see where to start. The exact commands depend on the project; the agent must leave working ones with the workflow.
 
-If a step needs your choice or work outside the agent's tools, the workflow should pause. It should save the draft and name what is missing. A paused draft is still unfinished work. The agent must not fill the gap with made-up approval.
+If a step needs your choice or a tool the agent cannot use, it should save the draft and tell you what is missing. It must leave that step open until the gap is resolved.
 
 ## What runs the steps
 
@@ -87,4 +87,4 @@ To check this repo, run `python scripts/check.py`. It checks release files and r
 
 ## AI assistance
 
-AI tools helped write the skill, Python helpers, tests, and docs, and helped review changes. The maintainer is responsible for project choices, what is published, and the stated test results. AI assistance and passing tests do not prove that a new workflow will give the right result. The test guide records what was checked and what remains unproved.
+AI tools helped write and review the skill, Python helpers, tests, and docs. The maintainer is responsible for project choices, published changes, and test claims. Read the test guide for what was checked and where those checks stop.

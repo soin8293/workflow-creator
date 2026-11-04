@@ -2,19 +2,19 @@
 
 ## Current checks
 
-Run `python scripts/check.py` from the repo folder. It checks the public file list, links, and manifest hashes, then runs all installer, release-tool, example, and runtime tests. An empty suite fails instead of reporting success. The checks need Python 3.11+ and no pip packages.
+Run `python scripts/check.py` from the repo folder. It checks the public file list, links, and manifest hashes, then runs all 62 tests: 19 repo tests and 43 runtime tests. An empty suite fails. The checks need Python 3.11+ and no pip packages.
 
 CI runs that command on Windows and Ubuntu with Python 3.11 and 3.12. It also installs and checks a fresh skill folder. Read the result for the exact commit you plan to use; the existence of a workflow file alone does not mean its jobs passed.
 
-New tests cover missing or changed installed files, an invalid skill header, stale manifest hashes, unlisted or missing release files, broken local links, private data file types, ZIP contents, empty test suites, and the fake-data example's output/repair/resume paths. See [the example](examples/README.md) to try those steps yourself.
+The tests cover missing or changed installed files, an invalid skill header, stale file hashes, unlisted or missing release files, broken local links, private data file types, ZIP contents, and empty test suites. They also check the example's output, failed step, repair, and resume. See [the example](examples/README.md) to try it yourself.
 
 Use `python scripts/release.py check` for the file and manifest checks alone. To update the reviewed file hashes or build a ZIP, follow [CONTRIBUTING.md](CONTRIBUTING.md). Checking a release never changes its manifest.
 
-## Earlier results
+## Earlier results: October 24–26, 2026
 
 The trials below were recorded on October 24, 2026. Private project files and full run records stay in their source projects. This page lists what the tests showed and where they stopped.
 
-## Checks of this package
+### Package checks at that time
 
 On Windows with Python 3.12, all 43 Foundry tests and all four installer tests passed. The installer tests checked these cases:
 
@@ -27,11 +27,11 @@ We also installed from the ZIP in a separate folder and checked that its skill f
 
 The first Foundry test run failed because the package lacked one example file. We added the unchanged file and ran all 43 tests again. They passed. The code that runs Foundry did not change.
 
-These checks ran on one Windows host. We have not run them on a separate Mac or Linux host. See [RELEASE_CHECKS.json](RELEASE_CHECKS.json) for the saved package check counts.
+These early checks ran on one Windows host. See [RELEASE_CHECKS.json](RELEASE_CHECKS.json) for that record. The CI added on November 3 also tests Ubuntu; no Mac test is claimed.
 
 A fresh clone from the public repo found one more install issue: Git changed line endings on Windows, which broke file hashes. The repo now includes `.gitattributes` to keep file bytes unchanged when you clone it.
 
-## Tests with fresh agents
+### Tests with fresh agents
 
 A fresh agent starts without the earlier chat. These trials used one agent to build a workflow and another to follow it. We checked the files and results after the agents finished.
 
@@ -54,7 +54,7 @@ The core `SKILL.md` is the same one used in the trials. Later package edits adde
 
 ## Run one suite
 
-From the repo folder, run the four installer tests:
+From the repo folder, run the 19 repo tests, which cover the installer, release tools, and example:
 
 ```text
 python -B -m unittest discover -s tests -v
