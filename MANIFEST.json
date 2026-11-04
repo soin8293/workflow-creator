@@ -1,21 +1,33 @@
 {
-  "version": "0.1.0-rc.2",
+  "version": "0.1.0-rc.3",
   "files": [
     {
       "path": ".gitattributes",
       "sha256": "26eaf1b1079f6722f85541157eabe977f4c155f75baeea100530df2c0fc4dfce"
     },
     {
+      "path": ".github/workflows/checks.yml",
+      "sha256": "08ed19b3d51e16319e317eb9b96846fd529adf4b7f6bd3af069cc2a76716ca50"
+    },
+    {
       "path": ".gitignore",
       "sha256": "25199f987ea4201a933dadad89f21368a4475a09a08a334d71651924ed818f8f"
     },
     {
-      "path": "DEPENDENCIES.md",
-      "sha256": "f8e94eb1ac0567d3adf39611bddf56bed496d979a8bf895eac6b1afb17350790"
+      "path": "AGENTS.md",
+      "sha256": "fc90962f2fdff2772fb17423b79e1856a140936e67d72acd609f0b6f72970747"
     },
     {
-      "path": "install.py",
-      "sha256": "52327ed41939245b6e9d9c94a1492eae38470517768b797a946222febd5bbd34"
+      "path": "CHANGELOG.md",
+      "sha256": "9a08fedf2ec767a8978bfe6efe7537128f85fce8ba813b6bc600a50f7b021065"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "5b4f9d56961d3a6ef0b66e6a821298eb86a8322f3fb189855dfcaccb1a00100b"
+    },
+    {
+      "path": "DEPENDENCIES.md",
+      "sha256": "8125752edd9f529bb6911de083e385007014d53e4412e7b79516f1c31c580136"
     },
     {
       "path": "LICENSE",
@@ -23,27 +35,83 @@
     },
     {
       "path": "README.md",
-      "sha256": "71dac77dcae798cd95888dbf515d0a7d09539f5e70f19089cbc438551b1f2553"
+      "sha256": "b7717a7717da4b71f38956e12dc20bfcd5eed13de9a42b0b62964b16dfd7ced3"
     },
     {
       "path": "RELEASE_CHECKS.json",
       "sha256": "2fc209180dc5814e834801b7b4b21c39f63c4a26233bf547380d47a52675e6f6"
     },
     {
+      "path": "RUNTIME_PROVENANCE.md",
+      "sha256": "33dbce41aff175f6dd85444ddb3d19071879386d3d2c89172de3ff4d5763f3b0"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "6a565d0ca0b6cc245be514af3b35716f8e3785837f57f8a46a46de4680d5358b"
+    },
+    {
+      "path": "TESTING.md",
+      "sha256": "6db0b503687944f2dcacf24a05397ff46b41fbadd3f021dede1f99f7f6ae08ac"
+    },
+    {
+      "path": "examples/README.md",
+      "sha256": "18bcd106d5f53781cd3dc95698ac34078aeaeb9756bf84c03e312e1e3f49ea28"
+    },
+    {
+      "path": "examples/demo.py",
+      "sha256": "3b02e6e42aac5bd69bffd858ca4e81a9c92eb92c11cb1cac1f4f9565f9af7f9b"
+    },
+    {
+      "path": "examples/workflow.json",
+      "sha256": "5e3c1fdf8c25580c0b3bb2d307b1c93c84adfee09d327d6108baa9ca3e8f94d4"
+    },
+    {
+      "path": "install.py",
+      "sha256": "9eff235ff9d048c4cf14bae361b90bfe3e4e0f2541ec89ca8f0f8950f47bee92"
+    },
+    {
+      "path": "release.json",
+      "sha256": "5fced94d19ba8cfc80e2fcb239dcc61771eb9cf897d61960c50155caedbff696"
+    },
+    {
       "path": "runtime-source.json",
       "sha256": "193069ac20dc003531d206e85f462a5be1c4dfc5e94cba0ed39af24319c203d2"
     },
     {
-      "path": "RUNTIME_PROVENANCE.md",
-      "sha256": "29a3f6422a7be5a44eaf2651c19cb2fd7beb1bdc6640fc3253813e81add4d0af"
+      "path": "scripts/check.py",
+      "sha256": "79252841682dc987ac1eb8edbb0a4326cb36d1be8ca5f63b5744a13540319858"
+    },
+    {
+      "path": "scripts/content_checks.py",
+      "sha256": "4732ce80afebd4b4cd7b886f196d7595d513ad21c53693b1f383586997987ff7"
+    },
+    {
+      "path": "scripts/release.py",
+      "sha256": "97169b44f19ee8f86bf84887d12c2ad0c37dd5016ba2192b4c54dc6cd3850635"
+    },
+    {
+      "path": "scripts/run_suite.py",
+      "sha256": "def99ddcde76e8d1e775e55067520ced8f4cddf223d8371571d04af483af1111"
     },
     {
       "path": "skills/workflow-creator/LICENSE",
       "sha256": "cc7a1f20b6c2b9fc7ea1112ee820b26775004cc2fcd6425d5f1e1930f1c6e9c7"
     },
     {
+      "path": "skills/workflow-creator/SKILL.md",
+      "sha256": "5f5d7b24d085b2d351d8aad52842804e4907afb7d82eea085b2e293a5efba0e7"
+    },
+    {
       "path": "skills/workflow-creator/references/foundry.md",
       "sha256": "90948ae5b44f8d9c74d39a5b11983ea8748fde72129c845b3d8afbcd05d07ac8"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/LICENSE",
+      "sha256": "cc7a1f20b6c2b9fc7ea1112ee820b26775004cc2fcd6425d5f1e1930f1c6e9c7"
+    },
+    {
+      "path": "skills/workflow-creator/runtime/README.md",
+      "sha256": "edd1dc15edbadaa2884b06074b5937073efe7309f01b250982e79713b6bcfecb"
     },
     {
       "path": "skills/workflow-creator/runtime/examples/artifact-correction.json",
@@ -56,14 +124,6 @@
     {
       "path": "skills/workflow-creator/runtime/examples/research-report.json",
       "sha256": "df1c466a99602a84fe3f9bc8ddd0dae31cd2c233e2101b4fea1c75e083b67ace"
-    },
-    {
-      "path": "skills/workflow-creator/runtime/LICENSE",
-      "sha256": "cc7a1f20b6c2b9fc7ea1112ee820b26775004cc2fcd6425d5f1e1930f1c6e9c7"
-    },
-    {
-      "path": "skills/workflow-creator/runtime/README.md",
-      "sha256": "edd1dc15edbadaa2884b06074b5937073efe7309f01b250982e79713b6bcfecb"
     },
     {
       "path": "skills/workflow-creator/runtime/tests/test_cli.py",
@@ -114,16 +174,16 @@
       "sha256": "b00745168a9744205048b098796395a215179875144a70e82bcc1da4967fd9e7"
     },
     {
-      "path": "skills/workflow-creator/SKILL.md",
-      "sha256": "5f5d7b24d085b2d351d8aad52842804e4907afb7d82eea085b2e293a5efba0e7"
-    },
-    {
-      "path": "TESTING.md",
-      "sha256": "74554b8b5f65ef7a475655b7a2b6a3024e55da4d04c14ddc1c3a92e67bb25c6e"
+      "path": "tests/test_demo.py",
+      "sha256": "568e6be3b9ae9cfd63a7d7ba84ff18c78e89b605732e750d2b1deee1a51eea4c"
     },
     {
       "path": "tests/test_install.py",
-      "sha256": "47d809df2eab20c16c487c7d4da68928f768d478c8a6bd5e215ddee73649e93b"
+      "sha256": "1585f8a4dc7899fb73c506b887fc3311cbc900856b5efcc62d9686a9cb770e3f"
+    },
+    {
+      "path": "tests/test_release.py",
+      "sha256": "009a7093c27cabe6f1c6389a99fe440cfcdcf9c5432e1832091ee154e6dc96ab"
     }
   ]
 }

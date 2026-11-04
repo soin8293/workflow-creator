@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
+import re
 from pathlib import Path, PurePosixPath
 import shutil
 import subprocess
@@ -11,6 +12,33 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parent
+RECEIPT = '.skill-install.json'
+
+
+def hashes(folder):
+    """Context Keeper's relative-file receipt pattern; no machine paths stored."""
+    result = {}
+    for path in sorted(folder.rglob('*')):
+        if path.is_symlink():
+            raise ValueError('Linked file in installation')
+        if not path.is_file() or '__pycache__' in path.parts or path.suffix == '.pyc':
+            continue
+        relative = path.relative_to(folder).as_posix()
+        if relative != RECEIPT:
+            result[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return result
+
+
+def validate_skill(folder):
+    text = (folder / 'SKILL.md').read_text(encoding='utf-8')
+    header = re.match(r'\A---\r?\n(.*?)\r?\n---\r?\n', text, re.S)
+    if not header:
+        raise ValueError('SKILL.md: missing skill header')
+    # The bundled skill uses plain, single-line name and description fields.
+    if not re.search(r'^name: workflow-creator\s*$', header[1], re.M):
+        raise ValueError('SKILL.md: wrong skill name')
+    if not re.search(r'^description: \S[^\r\n]*$', header[1], re.M):
+        raise ValueError('SKILL.md: missing description')
 
 
 def verify_payload():
@@ -38,9 +66,15 @@ def verify_payload():
     return payload
 
 
-def check(target):
+def check(target, expected=None):
+    validate_skill(target)
+    record = json.loads((target / RECEIPT).read_text(encoding='utf-8'))
+    current = hashes(target)
+    if record.get('files') != current or (expected is not None and current != expected):
+        raise ValueError('Installed skill files changed or do not match this release; reinstall from a trusted copy')
     command = [sys.executable, '-I', '-B', str(target / 'scripts' / 'foundry.py'), '--self-test']
     subprocess.run(command, check=True)
+    print('Skill header and installed file hashes: passed')
 
 
 def main():
@@ -55,7 +89,8 @@ def main():
     skill_home = args.skills_dir.expanduser().resolve()
     target = skill_home / 'workflow-creator'
     if args.check:
-        check(target)
+        payload = verify_payload()
+        check(target, hashes(payload))
         return
     payload = verify_payload()
     if ROOT == target or ROOT in target.parents or target in ROOT.parents:
@@ -68,7 +103,11 @@ def main():
     try:
         shutil.copytree(payload, stage, dirs_exist_ok=True,
                         ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
-        check(stage)
+        expected = hashes(payload)
+        (stage / RECEIPT).write_text(json.dumps({'version': json.loads(
+            (ROOT / 'MANIFEST.json').read_text(encoding='utf-8'))['version'],
+            'files': expected}, indent=2) + '\n', encoding='utf-8')
+        check(stage, expected)
         if target.exists():
             stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
             backup_home = skill_home.parent / 'skill-backups'

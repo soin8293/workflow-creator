@@ -1,5 +1,17 @@
 # Tests and results
 
+## Current checks
+
+Run `python scripts/check.py` from the repo folder. It checks the public file list, links, and manifest hashes, then runs all installer, release-tool, example, and runtime tests. An empty suite fails instead of reporting success. The checks need Python 3.11+ and no pip packages.
+
+CI runs that command on Windows and Ubuntu with Python 3.11 and 3.12. It also installs and checks a fresh skill folder. Read the result for the exact commit you plan to use; the existence of a workflow file alone does not mean its jobs passed.
+
+New tests cover missing or changed installed files, an invalid skill header, stale manifest hashes, unlisted or missing release files, broken local links, private data file types, ZIP contents, empty test suites, and the fake-data example's output/repair/resume paths. See [the example](examples/README.md) to try those steps yourself.
+
+Use `python scripts/release.py check` for the file and manifest checks alone. To update the reviewed file hashes or build a ZIP, follow [CONTRIBUTING.md](CONTRIBUTING.md). Checking a release never changes its manifest.
+
+## Earlier results
+
 The trials below were recorded on October 24, 2026. Private project files and full run records stay in their source projects. This page lists what the tests showed and where they stopped.
 
 ## Checks of this package
@@ -38,9 +50,9 @@ The tests support using the skill to build and follow local workflows. They do n
 
 A graph can have valid steps while the answer is wrong. A reviewer name in a file does not prove that a second person reviewed it. A sample report with made-up data does not prove a real-world result.
 
-The core `SKILL.md` is the same one used in the trials. Later package edits added runtime lookup notes, an installer, and a command script. We have tested those parts as listed above. We have not run a new fresh-agent trial of those package edits.
+The core `SKILL.md` is the same one used in the trials. Later package edits added runtime lookup notes, an installer, and a command script. Those checks and the new maintenance tests are separate from the fresh-agent trials. We have not run a new fresh-agent trial of these package edits.
 
-## Run the tests
+## Run one suite
 
 From the repo folder, run the four installer tests:
 
@@ -56,4 +68,4 @@ python -B -m unittest discover -s tests -v
 
 Both sets use test data in temporary folders. They need no network or account keys.
 
-The installer rejects files that differ from `MANIFEST.json`. After a planned source edit, the person making the release must update that file before running install tests. It lists each shipped file's SHA-256 hash, except its own. A hash is a file fingerprint; it helps check whether the bytes changed.
+The installer rejects files that differ from `MANIFEST.json`. After reviewing a source edit, run `python scripts/release.py manifest`, then run the checks. Add or remove a release file explicitly in `release.json`; the tool refuses unlisted files. The manifest lists each shipped file's SHA-256 hash, except its own. A hash is a file fingerprint; it helps check whether the bytes changed.

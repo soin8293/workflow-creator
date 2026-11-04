@@ -1,5 +1,6 @@
 """Offline installation isolation, update preservation and failure rejection."""
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -8,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -62,6 +64,51 @@ class InstallTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('Integrity mismatch', result.stderr)
         self.assertFalse(self.target.exists())
+
+    def test_check_rejects_invalid_skill_header(self):
+        self.assertEqual(self.install().returncode, 0)
+        (self.target / 'SKILL.md').write_text('Invalid skill fixture', encoding='utf-8')
+        result = self.install(ROOT, '--check')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('missing skill header', result.stderr)
+
+    def test_check_rejects_extra_unowned_installed_file(self):
+        self.assertEqual(self.install().returncode, 0)
+        (self.target / 'unowned.txt').write_text('fake local addition', encoding='utf-8')
+        self.assertNotEqual(self.install(ROOT, '--check').returncode, 0)
+
+    def test_final_swap_failure_restores_previous_installation(self):
+        self.assertEqual(self.install().returncode, 0)
+        (self.target / 'local-marker.txt').write_text('preserve local change', encoding='utf-8')
+        original = (self.target / 'SKILL.md').read_bytes()
+        spec = importlib.util.spec_from_file_location('installer_under_test', ROOT / 'install.py')
+        installer = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(installer)
+        rename = Path.rename
+
+        def fail_final_swap(path, destination):
+            if path.name.startswith('.workflow-creator-stage-'):
+                raise OSError('injected final swap failure')
+            return rename(path, destination)
+
+        with patch.object(sys, 'argv', ['install.py', '--skills-dir', str(self.skills)]), \
+                patch.object(Path, 'rename', fail_final_swap):
+            with self.assertRaisesRegex(OSError, 'injected'):
+                installer.main()
+        self.assertEqual((self.target / 'SKILL.md').read_bytes(), original)
+        self.assertEqual((self.target / 'local-marker.txt').read_text(), 'preserve local change')
+        self.assertFalse(list(self.skills.glob('.workflow-creator-stage-*')))
+
+    def test_check_rejects_changed_and_missing_installed_files(self):
+        self.assertEqual(self.install().returncode, 0)
+        file = self.target / 'runtime' / 'workflow_foundry' / 'compiler.py'
+        original = file.read_bytes()
+        file.write_bytes(original + b'\n# changed fixture\n')
+        self.assertNotEqual(self.install(ROOT, '--check').returncode, 0)
+        file.write_bytes(original)
+        self.assertEqual(self.install(ROOT, '--check').returncode, 0)
+        file.unlink()
+        self.assertNotEqual(self.install(ROOT, '--check').returncode, 0)
 
     def test_failed_runtime_check_keeps_current_installation(self):
         self.assertEqual(self.install().returncode, 0)

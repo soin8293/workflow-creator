@@ -28,7 +28,7 @@ python install.py --skills-dir /path/to/skills --check
 
 Replace `/path/to/skills` with the folder your agent reads. The installer creates a `workflow-creator` folder inside it.
 
-The check command tests the installed runtime. It does not prove that a workflow for your project gives the right result. That workflow needs its own tests.
+The check command validates the installed skill header and file hashes against this release, then tests the runtime. Older installs without a file receipt need to be reinstalled. The check does not prove that your agent discovers the skill or that a workflow for your project gives the right result. That workflow needs its own tests.
 
 ## Find and check the runtime
 

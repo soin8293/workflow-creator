@@ -1,0 +1,19 @@
+{
+  "schema_version": "workflow_foundry_v0",
+  "workflow_id": "checked_count_report",
+  "definition_version": "1.0.0",
+  "objective": "Make a count report from fake input, reject a wrong total, and resume after repair.",
+  "entry": "prepare",
+  "terminal_nodes": ["done", "stopped"],
+  "policies": {"max_steps": 8, "worker_protocol_required": false},
+  "nodes": [
+    {"id": "prepare", "kind": "activity", "routes": {"success": "check", "error": "stopped"}},
+    {"id": "check", "kind": "validation", "max_visits": 3, "routes": {"pass": "done", "fail": "repair", "error": "stopped"}},
+    {"id": "repair", "kind": "human_wait", "max_visits": 2,
+     "instructions": "Fix output.json from the saved input and report the repair.",
+     "wait": {"event_type": "repair.reported", "correlation_key": "count-report", "requires_actor": true, "required_evidence": ["repair"]},
+     "routes": {"approved": "check", "rejected": "stopped", "error": "stopped"}},
+    {"id": "done", "kind": "terminal", "outcome": "report_checked"},
+    {"id": "stopped", "kind": "terminal", "outcome": "stopped"}
+  ]
+}

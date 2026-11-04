@@ -19,7 +19,7 @@ python install.py --check
 
 On some computers, the Python command is `python3` or `py -3`. Use that name in place of `python`.
 
-The first command installs the skill and the code that runs its workflows. The second checks the installed copy. It tests saved progress, step changes, and checks that block old actions. Both commands work offline. They use the tools built into Python.
+The first command installs the skill and the code that runs its workflows. The second checks the skill header and installed file hashes before it runs code. It then tests saved progress, step changes, and checks that block old actions. Both commands work offline. They use the tools built into Python.
 
 The default install folder is `~/.codex/skills/workflow-creator`. If you set `CODEX_HOME`, the installer uses its `skills` folder instead. Open a new agent session after you install it.
 
@@ -75,6 +75,16 @@ To undo an update, move the new skill out of `skills`. Move the saved backup bac
 
 Fresh agents have built and followed workflows in several local trials. One early workflow missed an installed tool; that failure led to a fix. A later planning workflow produced useful drafts and paused for choices that only the owner could make. That trial did not reach final approval. Read [test results and limits](TESTING.md) for the details.
 
-This package uses the [MIT license](LICENSE). Read [where the runtime came from](RUNTIME_PROVENANCE.md) for its source records. The current package is `0.1.0-rc.2`.
+This package uses the [MIT license](LICENSE). Read [where the runtime came from](RUNTIME_PROVENANCE.md) for its source records. The current package is `0.1.0-rc.3`. See the [changelog](CHANGELOG.md) for changes and [security guide](SECURITY.md) for sensitive reports. This is an early release; fixes target the current version and there is no promised support schedule.
 
 The installer compares files with the hashes in `MANIFEST.json`. A hash is a file fingerprint. This check can catch changed or damaged files. It cannot prove who made the download, so install a copy from a source you trust.
+
+## Try an example or work on the repo
+
+The [small example](examples/README.md) makes a count report from fake data. It rejects a wrong total, saves a wait, and resumes after repair. It shows the parts a project workflow needs without using your files or calling an AI service.
+
+To check this repo, run `python scripts/check.py`. It checks release files and runs every test suite. Read [CONTRIBUTING.md](CONTRIBUTING.md) before editing the manifest or building a package.
+
+## AI assistance
+
+AI tools helped write the skill, Python helpers, tests, and docs, and helped review changes. The maintainer is responsible for project choices, what is published, and the stated test results. AI assistance and passing tests do not prove that a new workflow will give the right result. The test guide records what was checked and what remains unproved.

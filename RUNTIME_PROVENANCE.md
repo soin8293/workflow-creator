@@ -14,7 +14,7 @@ We copied these files without changing their contents:
 
 The file [runtime-source.json](runtime-source.json) lists a SHA-256 hash for each of these 14 files. A hash is a file fingerprint. We compared them with the local source copy when we built the release.
 
-The short runtime guide, installer, command script, and release docs were added for this package. The original Foundry folder was left unchanged. This package ships a copy of version 0.2.0; it does not claim to be a new Foundry version.
+The short runtime guide, installer, command script, and release docs were added for this package. The release-content checker, test-suite runner, and installed-file receipt pattern reuse the existing Context Keeper tools from the same maintainer. They are adapted for this repo and covered by its MIT license. The original tool workspaces were left unchanged. This package ships Foundry 0.2.0; it does not claim to be a new Foundry version.
 
 ## What comes with the download
 
